@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /* 
+        作用域值一个变量的作用的范围
+        作用域分为全局作用域和函数作用域
+
+        全局作用域:直接编写在SCRIPT标签的的代码,都在全局作用域
+                    在页面打开时创建,页面关闭时销毁
+                    在全局作用域中有一个全局对象window,可以直接使用,代表浏览器的一个窗口
+                    全局作用域中的变量都时全局变量
+        */
+
+      console.log(window);
+      var a = 10;
+      //   a保存在window对象中
+      console.log(a);
+      console.log(window.a);
+
+      // 变量提升
+      // 使用var关键字声明的变量，会在所有的代码执行之前被声明，但不会赋值
+      // 如果声明的变量不是用var关键字时，则不会被声明提前
+      console.log("b=", b);
+      var b = 10;
+      /*
+        以上代码先当于
+        var b 
+        console.log("b=", b);
+        b = 10;
+       */
+
+      /*
+        函数的声明提前
+         使用函数声明形式创建的函数function 函数（）{}会在所有代码执行之前声明
+         所以我们可以在函数声明之前调用
+         使用函数表达式创建的函数不会被声明提前，所以不能在声明前调用
+        */
+      fun();
+      function fun() {
+        console.log("我是fun函数");
+      }
+      /* 
+       相当于
+         function fun() {
+         console.log("我是fun函数");
+       }
+        fun()
+        */
+      fun2();
+      var fun2 = function () {
+        console.log("我是fun2函数");
+      };
+    </script>
+  </body>
+</html>

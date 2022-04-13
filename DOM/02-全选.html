@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      #box {
+        width: 400px;
+        margin: 20px auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box">
+      <div>
+        你的爱好是？
+        <input type="checkbox" id="checkbox" />
+        全选/全不选
+      </div>
+      <div>
+        <input type="checkbox" name="items" value="篮球" />篮球
+        <input type="checkbox" name="items" value="足球" />足球
+        <input type="checkbox" name="items" value="羽毛球" />羽毛球
+        <input type="checkbox" name="items" value="游泳" />游泳
+      </div>
+      <div>
+        <button>全选</button>
+        <button>全不选</button>
+        <button>反选</button>
+        <button>提交</button>
+      </div>
+    </div>
+
+    <script>
+      var btn = document.getElementsByTagName("button");
+      var all = document.getElementById("checkbox");
+      var items = document.getElementsByName("items");
+      // 判断全选/反选
+      function controlAll() {
+        var count1 = 0;
+        var count2 = 0;
+        for (var i = 0; i < items.length; i++) {
+          if (items[i].checked) {
+            count1++;
+          }
+          if (!items[i].checked) {
+            count2++;
+          }
+        }
+        if (count1 == items.length || count2 == items.length) {
+          all.checked = true;
+        } else {
+          all.checked = false;
+        }
+      }
+      // 初次判断全选/反选
+      controlAll();
+      // 点击爱好时判断全选/反选
+      for (var i = 0; i < items.length; i++) {
+        items[i].onclick = function () {
+          controlAll();
+        };
+      }
+      // 全选
+      btn[0].onclick = function () {
+        for (var i = 0; i < items.length; i++) {
+          items[i].checked = true;
+        }
+        all.checked = true;
+      };
+      // 全不选
+      btn[1].onclick = function () {
+        for (var i = 0; i < items.length; i++) {
+          items[i].checked = "";
+        }
+        all.checked = true;
+      };
+      // 反选
+      btn[2].onclick = function () {
+        for (var i = 0; i < items.length; i++) {
+          items[i].checked = !items[i].checked;
+        }
+        controlAll();
+      };
+      // 提交
+      btn[3].onclick = function () {
+        for (var i = 0; i < items.length; i++) {
+          if (items[i].checked) {
+            console.log(items[i].value);
+          }
+        }
+      };
+    </script>
+  </body>
+</html>
